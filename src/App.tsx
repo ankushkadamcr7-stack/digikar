@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView, animate } from 'motion/react';
 import { 
   Phone, 
   MessageCircle, 
@@ -33,6 +33,26 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 const WHATSAPP_NUMBER = "919892676143"; // Replace with actual number
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Digiकर,%20I%20want%20to%20get%20my%20business%20online!`;
 const PHONE_LINK = `tel:+${WHATSAPP_NUMBER}`;
+
+const AnimatedCounter = ({ value, duration = 2, suffix = "", prefix = "" }: { value: number, duration?: number, suffix?: string, prefix?: string }) => {
+  const countRef = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(countRef, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView && countRef.current) {
+      animate(0, value, {
+        duration,
+        onUpdate: (latest) => {
+          if (countRef.current) {
+            countRef.current.textContent = prefix + Math.round(latest) + suffix;
+          }
+        }
+      });
+    }
+  }, [isInView, value, duration, suffix, prefix]);
+
+  return <span ref={countRef}>{prefix}0{suffix}</span>;
+};
 
 const testimonials = [
   { name: "Rahul S.", biz: "Fitness Studio Owner", text: "Got my website in 2 days! The WhatsApp integration is amazing, I'm getting inquiries directly on my phone now." },
@@ -76,17 +96,17 @@ const faqs = [
   }
 ];
 
-const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
+const FAQItem: React.FC<{ question: string, answer: string }> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className={`border ${isOpen ? 'border-orange-500/50' : 'border-slate-800'} rounded-2xl bg-slate-950 overflow-hidden transition-colors duration-300`}>
+    <div className={`border ${isOpen ? 'border-rose-500/50 bg-white/[0.04]' : 'border-white/5 bg-transparent'} rounded-2xl overflow-hidden transition-all duration-300 backdrop-blur-sm`}>
       <button 
         onClick={() => setIsOpen(!isOpen)} 
         className="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none"
       >
-        <span className="font-bold text-lg text-slate-200 pr-4">{question}</span>
-        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${isOpen ? 'bg-orange-500/20' : 'bg-slate-800'}`}>
-          <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isOpen ? 'rotate-180 text-orange-400' : 'text-slate-400'}`} />
+        <span className="font-bold text-lg text-white pr-4 tracking-tight">{question}</span>
+        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${isOpen ? 'bg-rose-500/20' : 'bg-white/5'}`}>
+          <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isOpen ? 'rotate-180 text-rose-400' : 'text-zinc-400'}`} />
         </div>
       </button>
       <motion.div 
@@ -94,7 +114,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
         animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
         className="overflow-hidden"
       >
-        <div className="px-6 pb-5 text-slate-400 leading-relaxed">
+        <div className="px-6 pb-5 text-zinc-400 leading-relaxed">
           {answer}
         </div>
       </motion.div>
@@ -126,28 +146,35 @@ export default function App() {
     setIsMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navHeight = 80; // 5rem = h-20
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - navHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-orange-500 selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#060606] text-white font-sans selection:bg-rose-500 selection:text-white overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+      <nav className="fixed top-0 w-full z-50 bg-[#060606]/80 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
-              <span className="text-3xl font-extrabold tracking-normal bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+            <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <span className="text-3xl font-extrabold tracking-normal bg-gradient-to-r from-rose-500 to-rose-600 bg-clip-text text-transparent">
                 Digiकर
               </span>
             </div>
             
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('home')} className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</button>
-              <button onClick={() => scrollToSection('services')} className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Services</button>
-              <button onClick={() => scrollToSection('portfolio')} className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Work</button>
-              <button onClick={() => scrollToSection('pricing')} className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Pricing</button>
+              <button onClick={() => scrollToSection('home')} className="text-sm font-medium text-zinc-300 hover:text-white transition-colors">Home</button>
+              <button onClick={() => scrollToSection('services')} className="text-sm font-medium text-zinc-300 hover:text-white transition-colors">Services</button>
+              <button onClick={() => scrollToSection('portfolio')} className="text-sm font-medium text-zinc-300 hover:text-white transition-colors">Work</button>
+              <button onClick={() => scrollToSection('pricing')} className="text-sm font-medium text-zinc-300 hover:text-white transition-colors">Pricing</button>
               <a 
                 href={WHATSAPP_LINK}
                 target="_blank"
@@ -163,7 +190,7 @@ export default function App() {
             <div className="md:hidden flex items-center">
               <button 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-slate-300 hover:text-white p-2"
+                className="text-zinc-300 hover:text-white p-2"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -176,13 +203,13 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden bg-slate-900 border-b border-slate-800"
+            className="md:hidden bg-zinc-900 border-b border-white/10"
           >
             <div className="px-4 pt-2 pb-4 space-y-1">
-              <button onClick={() => scrollToSection('home')} className="block w-full text-left px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-md">Home</button>
-              <button onClick={() => scrollToSection('services')} className="block w-full text-left px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-md">Services</button>
-              <button onClick={() => scrollToSection('portfolio')} className="block w-full text-left px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-md">Work</button>
-              <button onClick={() => scrollToSection('pricing')} className="block w-full text-left px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-md">Pricing</button>
+              <button onClick={() => scrollToSection('home')} className="block w-full text-left px-3 py-2 text-base font-medium text-zinc-300 hover:text-white hover:bg-white/5 rounded-md">Home</button>
+              <button onClick={() => scrollToSection('services')} className="block w-full text-left px-3 py-2 text-base font-medium text-zinc-300 hover:text-white hover:bg-white/5 rounded-md">Services</button>
+              <button onClick={() => scrollToSection('portfolio')} className="block w-full text-left px-3 py-2 text-base font-medium text-zinc-300 hover:text-white hover:bg-white/5 rounded-md">Work</button>
+              <button onClick={() => scrollToSection('pricing')} className="block w-full text-left px-3 py-2 text-base font-medium text-zinc-300 hover:text-white hover:bg-white/5 rounded-md">Pricing</button>
             </div>
           </motion.div>
         )}
@@ -190,17 +217,19 @@ export default function App() {
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section id="home" className="relative overflow-hidden pt-20 pb-24 lg:pt-32 lg:pb-40">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-slate-950 -z-10"></div>
-          <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] -z-10"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] -z-10"></div>
+        <section id="home" className="relative overflow-hidden pt-20 pb-24 lg:pt-40 lg:pb-48">
+          <div className="absolute inset-0 bg-[#060606] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/40 via-[#060606] text-white to-[#060606] -z-10"></div>
+          
+          <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-rose-500/15 rounded-full blur-[120px] -z-10"></div>
+          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px] -z-10"></div>
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay -z-10"></div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 text-sm font-medium mb-8 border border-orange-500/20"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 text-rose-400 text-sm font-semibold mb-8 border border-rose-500/20 backdrop-blur-md"
             >
               <Zap className="w-4 h-4" />
               <span>Limited Time Offer for Local Businesses</span>
@@ -210,20 +239,20 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6"
+              className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-6 leading-[1.1] text-white"
             >
-              Take Your Business Online & <br className="hidden md:block" />
-              Start Getting Customers Daily 🚀
+              Take Your Business Online <br className="hidden md:block" />
+              & Start Getting Customers <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-purple-500">Daily.</span>
             </motion.h1>
             
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-4 text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-10 font-medium"
+              className="mt-6 text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 font-medium leading-relaxed"
             >
               Website + Google Ranking + Leads — All in One Place. <br className="hidden sm:block" />
-              <span className="text-slate-300">Aapka business, ab online daudega!</span>
+              <span className="text-zinc-300">Aapka business, ab online daudega!</span>
             </motion.p>
             
             <motion.div 
@@ -235,7 +264,7 @@ export default function App() {
               <a 
                 href="#pricing"
                 onClick={(e) => { e.preventDefault(); scrollToSection('pricing'); }}
-                className="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full text-white bg-orange-600 hover:bg-orange-500 shadow-[0_0_40px_-10px_rgba(234,88,12,0.5)] transition-all hover:scale-105 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full text-white bg-white/10 hover:bg-white/20 border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all hover:scale-105 flex items-center justify-center gap-2"
               >
                 Get Website Now
                 <ArrowRight className="w-5 h-5" />
@@ -244,7 +273,7 @@ export default function App() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full text-slate-300 bg-slate-800 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full text-zinc-900 bg-white hover:bg-zinc-200 transition-all hover:scale-105 flex items-center justify-center gap-2"
               >
                 <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                 Chat on WhatsApp
@@ -254,11 +283,11 @@ export default function App() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-24 bg-slate-900/50 border-y border-slate-800/50">
+        <section id="services" className="py-24 bg-zinc-900/50 border-y border-white/10/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Everything You Need to Grow</h2>
-              <p className="text-slate-400 text-lg">We don't just build websites; we build lead generation machines for your local business.</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Everything You Need to Grow</h2>
+              <p className="text-zinc-400 text-lg">We don't just build websites; we build lead generation machines for your local business.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -266,7 +295,7 @@ export default function App() {
                 { icon: Globe, title: "Website Development", desc: "Fast, mobile-friendly website under ₹5000. Perfect for showcasing your services.", benefit: "Builds Trust & Credibility", color: "text-blue-400", bg: "bg-blue-400/10", border: "hover:border-blue-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(96,165,250,0.3)]" },
                 { icon: MapPin, title: "Google My Business", desc: "Rank higher on Google Maps when locals search for your services.", benefit: "More Local Walk-ins", color: "text-red-400", bg: "bg-red-400/10", border: "hover:border-red-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(248,113,113,0.3)]" },
                 { icon: MessageCircle, title: "WhatsApp Integration", desc: "Get direct inquiries from your website straight to your WhatsApp.", benefit: "Instant Customer Chat", color: "text-green-400", bg: "bg-green-400/10", border: "hover:border-green-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(74,222,128,0.3)]" },
-                { icon: TrendingUp, title: "Lead Generation Setup", desc: "Contact forms and call-to-actions designed to convert visitors into customers.", benefit: "More Phone Calls & Leads", color: "text-orange-400", bg: "bg-orange-400/10", border: "hover:border-orange-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(251,146,60,0.3)]" },
+                { icon: TrendingUp, title: "Lead Generation Setup", desc: "Contact forms and call-to-actions designed to convert visitors into customers.", benefit: "More Phone Calls & Leads", color: "text-rose-400", bg: "bg-rose-400/10", border: "hover:border-rose-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(244,63,94,0.3)]" },
                 { icon: Smartphone, title: "Meta Ads Setup", desc: "Start reaching more customers on Facebook and Instagram locally.", benefit: "Targeted Local Reach", color: "text-purple-400", bg: "bg-purple-400/10", border: "hover:border-purple-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(192,132,252,0.3)]" },
                 { icon: Search, title: "SEO Basics", desc: "On-page optimization so Google can easily find and rank your website.", benefit: "Free Organic Traffic", color: "text-teal-400", bg: "bg-teal-400/10", border: "hover:border-teal-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(45,212,191,0.3)]" }
               ].map((service, idx) => (
@@ -276,7 +305,7 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className={`bg-slate-950 border border-slate-800 p-8 rounded-2xl transition-all duration-500 group hover:-translate-y-2 ${service.border} ${service.shadow} relative overflow-hidden flex flex-col h-full`}
+                  className={`bg-[#060606] border border-white/10 p-8 rounded-2xl transition-all duration-500 group hover:-translate-y-2 ${service.border} ${service.shadow} relative overflow-hidden flex flex-col h-full`}
                 >
                   {/* Background Glow Effect on Hover */}
                   <div className={`absolute top-0 right-0 w-32 h-32 ${service.bg} rounded-bl-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`}></div>
@@ -286,15 +315,15 @@ export default function App() {
                   </div>
                   
                   <h3 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-white transition-colors">{service.title}</h3>
-                  <p className="text-slate-400 leading-relaxed mb-8 flex-grow">{service.desc}</p>
+                  <p className="text-zinc-400 leading-relaxed mb-8 flex-grow">{service.desc}</p>
                   
                   {/* Benefit Section */}
-                  <div className="mt-auto pt-5 border-t border-slate-800/50 flex items-start gap-3">
+                  <div className="mt-auto pt-5 border-t border-white/10/50 flex items-start gap-3">
                     <div className={`mt-0.5 rounded-full ${service.bg} p-1`}>
                       <CheckCircle2 className={`w-4 h-4 ${service.color}`} />
                     </div>
-                    <p className="text-sm font-medium text-slate-300">
-                      <span className="text-slate-500 block text-xs uppercase tracking-wider mb-0.5">Outcome</span>
+                    <p className="text-sm font-medium text-zinc-300">
+                      <span className="text-zinc-500 block text-xs uppercase tracking-wider mb-0.5">Outcome</span>
                       {service.benefit}
                     </p>
                   </div>
@@ -309,10 +338,37 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose <span className="text-orange-500">Digiकर</span>?</h2>
-                <p className="text-slate-400 text-lg mb-8">
+                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Why Choose <span className="text-rose-500">Digiकर</span>?</h2>
+                <p className="text-zinc-400 text-lg mb-8">
                   We understand local businesses. You don't need a ₹50,000 complex website. You need a fast, affordable solution that brings customers to your door.
                 </p>
+                
+                <div className="grid grid-cols-2 gap-4 mb-10">
+                  <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-colors">
+                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 mb-1">
+                      <AnimatedCounter value={2} suffix=" Days" />
+                    </div>
+                    <div className="text-sm text-zinc-400 font-medium">Fast Delivery</div>
+                  </div>
+                  <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-colors">
+                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 mb-1">
+                      <AnimatedCounter value={5} suffix="+" />
+                    </div>
+                    <div className="text-sm text-zinc-400 font-medium">Years of Experience</div>
+                  </div>
+                  <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-colors">
+                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 mb-1">
+                      <AnimatedCounter value={200} suffix="+" />
+                    </div>
+                    <div className="text-sm text-zinc-400 font-medium">Happy Clients</div>
+                  </div>
+                  <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-colors">
+                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 mb-1">
+                      <AnimatedCounter value={99} suffix="%" />
+                    </div>
+                    <div className="text-sm text-zinc-400 font-medium">Satisfaction Rate</div>
+                  </div>
+                </div>
                 
                 <div className="space-y-6">
                   {[
@@ -321,38 +377,49 @@ export default function App() {
                     { icon: MonitorSmartphone, title: "Mobile Optimized", desc: "Looks perfect on every phone, where 90% of your customers are." },
                     { icon: Headset, title: "Personal Support", desc: "Direct WhatsApp support. No bots, talk to real humans." }
                   ].map((item, idx) => (
-                    <div key={idx} className="flex gap-4">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
-                        <item.icon className="w-5 h-5 text-orange-400" />
-                      </div>
+                    <motion.div 
+                      key={idx} 
+                      className="flex gap-4 group"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    >
+                      <motion.div 
+                        className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500/10 to-purple-500/10 border border-white/5 flex items-center justify-center shadow-[0_0_15px_rgba(244,63,94,0.05)] group-hover:border-rose-500/30 group-hover:bg-rose-500/20 transition-colors"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      >
+                        <item.icon className="w-6 h-6 text-rose-400 group-hover:text-rose-300 transition-colors" />
+                      </motion.div>
                       <div>
-                        <h4 className="text-lg font-bold text-slate-200">{item.title}</h4>
-                        <p className="text-slate-400">{item.desc}</p>
+                        <h4 className="text-lg font-bold text-zinc-200 group-hover:text-white transition-colors">{item.title}</h4>
+                        <p className="text-zinc-400">{item.desc}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
               
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-blue-500/20 rounded-3xl blur-3xl -z-10"></div>
-                <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-bl-full"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-rose-500/20 to-blue-500/20 rounded-3xl blur-3xl -z-10"></div>
+                <div className="bg-zinc-900 border border-white/10 rounded-3xl p-8 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-bl-full"></div>
                   <h3 className="text-2xl font-bold mb-6">Ready to start?</h3>
                   <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); window.open(WHATSAPP_LINK, '_blank'); }}>
                     <div>
-                      <label className="block text-sm font-medium text-slate-400 mb-1">Business Name</label>
-                      <input type="text" className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors" placeholder="e.g. Sharma Dental Clinic" />
+                      <label className="block text-sm font-medium text-zinc-400 mb-1">Business Name</label>
+                      <input type="text" className="w-full bg-[#060606] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-colors" placeholder="e.g. Sharma Dental Clinic" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-400 mb-1">Phone Number</label>
-                      <input type="tel" className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors" placeholder="+91" />
+                      <label className="block text-sm font-medium text-zinc-400 mb-1">Phone Number</label>
+                      <input type="tel" className="w-full bg-[#060606] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-colors" placeholder="+91" />
                     </div>
-                    <button type="submit" className="w-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 mt-2">
+                    <button type="submit" className="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 mt-2">
                       Get Free Consultation
                       <ArrowRight className="w-4 h-4" />
                     </button>
-                    <p className="text-xs text-slate-500 text-center mt-4">We will contact you within 2 hours.</p>
+                    <p className="text-xs text-zinc-500 text-center mt-4">We will contact you within 2 hours.</p>
                   </form>
                 </div>
               </div>
@@ -361,11 +428,11 @@ export default function App() {
         </section>
 
         {/* Portfolio / Demos */}
-        <section id="portfolio" className="py-24 bg-slate-900/30 border-y border-slate-800/50">
+        <section id="portfolio" className="py-24 bg-zinc-900/30 border-y border-white/10/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Websites That Work</h2>
-              <p className="text-slate-400 text-lg">See how we help different local businesses establish their online presence.</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Websites That Work</h2>
+              <p className="text-zinc-400 text-lg">See how we help different local businesses establish their online presence.</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -389,11 +456,11 @@ export default function App() {
                   transition={{ delay: idx * 0.1 }}
                   className="group cursor-pointer"
                 >
-                  <div className="relative overflow-hidden rounded-2xl aspect-[4/3] mb-4 border border-slate-800">
+                  <div className="relative overflow-hidden rounded-2xl aspect-[4/3] mb-4 border border-white/10">
                     <img src={demo.img} alt={demo.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80"></div>
                     <div className="absolute bottom-4 left-4 right-4">
-                      <span className="inline-block px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded mb-2 backdrop-blur-sm border border-orange-500/20">{demo.tag}</span>
+                      <span className="inline-block px-2 py-1 bg-rose-500/20 text-rose-400 text-xs font-bold rounded mb-2 backdrop-blur-sm border border-rose-500/20">{demo.tag}</span>
                       <h3 className="text-xl font-bold text-white">{demo.title}</h3>
                     </div>
                   </div>
@@ -406,7 +473,7 @@ export default function App() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-orange-400 font-medium hover:text-orange-300 transition-colors"
+                className="inline-flex items-center gap-2 text-rose-400 font-medium hover:text-rose-300 transition-colors"
               >
                 Get a Similar Website for Your Business <ChevronRight className="w-4 h-4" />
               </a>
@@ -418,8 +485,8 @@ export default function App() {
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple 4-Step Process</h2>
-              <p className="text-slate-400 text-lg">No technical knowledge required. We handle everything for you.</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Simple 4-Step Process</h2>
+              <p className="text-zinc-400 text-lg">No technical knowledge required. We handle everything for you.</p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -430,12 +497,12 @@ export default function App() {
                 { step: "04", title: "Go Live", desc: "Your website is live! Start getting customer inquiries." }
               ].map((item, idx) => (
                 <div key={idx} className="relative">
-                  {idx !== 3 && <div className="hidden lg:block absolute top-8 left-1/2 w-full h-[1px] bg-slate-800"></div>}
-                  <div className="relative z-10 bg-slate-950 w-16 h-16 rounded-2xl border border-slate-800 flex items-center justify-center text-2xl font-bold text-orange-500 mb-6 mx-auto lg:mx-0 shadow-[0_0_30px_-10px_rgba(234,88,12,0.3)]">
+                  {idx !== 3 && <div className="hidden lg:block absolute top-8 left-1/2 w-full h-[1px] bg-white/5"></div>}
+                  <div className="relative z-10 bg-[#060606] w-16 h-16 rounded-2xl border border-white/10 flex items-center justify-center text-2xl font-bold text-rose-500 mb-6 mx-auto lg:mx-0 shadow-[0_0_30px_-10px_rgba(234,88,12,0.3)]">
                     {item.step}
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-center lg:text-left">{item.title}</h3>
-                  <p className="text-slate-400 text-center lg:text-left">{item.desc}</p>
+                  <p className="text-zinc-400 text-center lg:text-left">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -443,11 +510,11 @@ export default function App() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-24 bg-slate-900/50 border-y border-slate-800/50">
+        <section className="py-24 bg-zinc-900/50 border-y border-white/10/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by Local Businesses</h2>
-              <p className="text-slate-400 text-lg">See what our clients have to say about our services.</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Trusted by Local Businesses</h2>
+              <p className="text-zinc-400 text-lg">See what our clients have to say about our services.</p>
             </div>
 
             <div className="relative max-w-4xl mx-auto">
@@ -455,7 +522,7 @@ export default function App() {
               <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12 z-10">
                 <button 
                   onClick={prevTestimonial}
-                  className="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-orange-600 transition-colors shadow-lg"
+                  className="w-10 h-10 rounded-full bg-white/5 text-white flex items-center justify-center hover:bg-rose-600 transition-colors shadow-lg"
                   aria-label="Previous testimonial"
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -465,7 +532,7 @@ export default function App() {
               <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-10">
                 <button 
                   onClick={nextTestimonial}
-                  className="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-orange-600 transition-colors shadow-lg"
+                  className="w-10 h-10 rounded-full bg-white/5 text-white flex items-center justify-center hover:bg-rose-600 transition-colors shadow-lg"
                   aria-label="Next testimonial"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -481,15 +548,15 @@ export default function App() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.3 }}
-                    className="bg-slate-950 border border-slate-800 p-8 md:p-10 rounded-2xl flex flex-col items-center text-center hover:border-orange-500/30 transition-colors shadow-xl"
+                    className="bg-[#0a0a0a] border border-white/5 p-8 md:p-10 rounded-3xl flex flex-col items-center text-center hover:bg-white/[0.02] hover:border-white/10 transition-colors shadow-2xl"
                   >
-                    <div className="flex gap-1 text-orange-500 mb-6">
+                    <div className="flex gap-1 text-rose-500 mb-6">
                       {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                     </div>
-                    <p className="text-slate-300 text-lg md:text-xl mb-8 italic leading-relaxed">"{testimonials[testimonialIndex].text}"</p>
-                    <div className="mt-auto pt-6 border-t border-slate-800/50 w-full">
+                    <p className="text-zinc-300 text-lg md:text-xl mb-8 italic leading-relaxed">"{testimonials[testimonialIndex].text}"</p>
+                    <div className="mt-auto pt-6 border-t border-white/10/50 w-full">
                       <p className="font-bold text-white text-lg">{testimonials[testimonialIndex].name}</p>
-                      <p className="text-md text-orange-500">{testimonials[testimonialIndex].biz}</p>
+                      <p className="text-md text-rose-500">{testimonials[testimonialIndex].biz}</p>
                     </div>
                   </motion.div>
                 </AnimatePresence>
@@ -501,7 +568,7 @@ export default function App() {
                   <button
                     key={idx}
                     onClick={() => setTestimonialIndex(idx)}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors ${idx === testimonialIndex ? 'bg-orange-500' : 'bg-slate-700 hover:bg-slate-500'}`}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === testimonialIndex ? 'bg-rose-500 w-8' : 'bg-white/20 hover:bg-white/40'}`}
                     aria-label={`Go to testimonial ${idx + 1}`}
                   />
                 ))}
@@ -512,29 +579,29 @@ export default function App() {
 
         {/* Pricing */}
         <section id="pricing" className="py-24 relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/5 rounded-full blur-[120px] -z-10"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-rose-500/5 rounded-full blur-[120px] -z-10"></div>
           
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
-              <p className="text-slate-400 text-lg">Everything you need to get online, in one affordable package.</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Simple, Transparent Pricing</h2>
+              <p className="text-zinc-400 text-lg">Everything you need to get online, in one affordable package.</p>
             </div>
 
-            <div className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl relative">
-              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-orange-400 to-orange-600"></div>
+            <div className="bg-gradient-to-b from-white/[0.05] to-transparent border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative backdrop-blur-sm">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-rose-500 to-purple-600"></div>
               
               <div className="p-8 md:p-12">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10 pb-10 border-b border-slate-800">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10 pb-10 border-b border-white/10">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-2">Complete Website Package</h3>
-                    <p className="text-slate-400">Perfect for small & local businesses</p>
+                    <p className="text-zinc-400">Perfect for small & local businesses</p>
                   </div>
                   <div className="text-center md:text-right">
                     <div className="flex items-baseline gap-2 justify-center md:justify-end">
                       <span className="text-5xl font-extrabold text-white">₹4999</span>
-                      <span className="text-slate-500 line-through">₹15000</span>
+                      <span className="text-zinc-500 line-through">₹15000</span>
                     </div>
-                    <p className="text-orange-400 font-medium mt-1">One-time development cost</p>
+                    <p className="text-rose-400 font-medium mt-1">One-time development cost</p>
                   </div>
                 </div>
 
@@ -552,8 +619,8 @@ export default function App() {
                     "1 Month Free Support"
                   ].map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                      <span className="text-slate-300">{feature}</span>
+                      <CheckCircle2 className="w-5 h-5 text-rose-500 flex-shrink-0" />
+                      <span className="text-zinc-300">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -563,7 +630,7 @@ export default function App() {
                     href={WHATSAPP_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-8 py-4 text-lg font-bold rounded-xl text-white bg-orange-600 hover:bg-orange-500 transition-all text-center flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-8 py-4 text-lg font-bold rounded-xl text-white bg-rose-600 hover:bg-rose-500 transition-all text-center flex items-center justify-center gap-2"
                   >
                     Claim This Offer Now
                     <ArrowRight className="w-5 h-5" />
@@ -578,8 +645,8 @@ export default function App() {
         <section className="py-24 relative">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-              <p className="text-slate-400 text-lg">Everything you need to know about our services and pricing.</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Frequently Asked Questions</h2>
+              <p className="text-zinc-400 text-lg">Everything you need to know about our services and pricing.</p>
             </div>
             <div className="space-y-4">
               {faqs.map((faq, idx) => (
@@ -590,24 +657,24 @@ export default function App() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-20 bg-orange-600 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <section className="py-20 bg-gradient-to-r from-rose-600 to-purple-600 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Don’t Lose Customers to Your Competitors</h2>
-            <p className="text-orange-100 text-xl mb-10">Go online today and start getting more leads, more calls, and more business.</p>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-white mb-6">Don’t Lose Customers to Your Competitors</h2>
+            <p className="text-rose-100 text-xl font-medium mb-10">Go online today and start getting more leads, more calls, and more business.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 text-lg font-bold rounded-full text-orange-600 bg-white hover:bg-slate-100 transition-all flex items-center justify-center gap-2 shadow-xl"
+                className="px-8 py-4 text-lg font-bold rounded-full text-purple-600 bg-white hover:bg-white/90 transition-all flex items-center justify-center gap-2 shadow-xl"
               >
                 <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                 WhatsApp Now
               </a>
               <a 
                 href={PHONE_LINK}
-                className="px-8 py-4 text-lg font-bold rounded-full text-white bg-orange-700 hover:bg-orange-800 transition-all flex items-center justify-center gap-2 border border-orange-500"
+                className="px-8 py-4 text-lg font-bold rounded-full text-white bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center gap-2 border border-white/20 backdrop-blur-md"
               >
                 <Phone className="w-5 h-5" />
                 Call Now
@@ -618,23 +685,23 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-8">
+      <footer className="bg-[#060606] border-t border-slate-900 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-12 mb-12">
             <div>
               <div className="flex items-center mb-6">
-                <span className="text-4xl font-extrabold tracking-normal bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                <span className="text-4xl font-extrabold tracking-normal bg-gradient-to-r from-rose-500 to-rose-600 bg-clip-text text-transparent">
                   Digiकर
                 </span>
               </div>
-              <p className="text-slate-400 mb-6">
+              <p className="text-zinc-400 mb-6">
                 Empowering local businesses in India with affordable, high-converting websites and digital solutions.
               </p>
               <div className="flex gap-4">
-                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:text-[#25D366] hover:bg-slate-800 transition-colors">
+                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:text-[#25D366] hover:bg-white/5 transition-colors">
                   <WhatsAppIcon className="w-5 h-5" />
                 </a>
-                <a href="https://www.instagram.com/digikarlo/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-slate-400 hover:text-pink-500 hover:bg-slate-800 transition-colors">
+                <a href="https://www.instagram.com/digikarlo/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:text-pink-500 hover:bg-white/5 transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>
@@ -643,9 +710,9 @@ export default function App() {
             <div>
               <h4 className="text-white font-bold mb-6">Quick Links</h4>
               <ul className="space-y-3">
-                <li><button onClick={() => scrollToSection('services')} className="text-slate-400 hover:text-orange-400 transition-colors">Services</button></li>
-                <li><button onClick={() => scrollToSection('portfolio')} className="text-slate-400 hover:text-orange-400 transition-colors">Our Work</button></li>
-                <li><button onClick={() => scrollToSection('pricing')} className="text-slate-400 hover:text-orange-400 transition-colors">Pricing</button></li>
+                <li><button onClick={() => scrollToSection('services')} className="text-zinc-400 hover:text-rose-400 transition-colors">Services</button></li>
+                <li><button onClick={() => scrollToSection('portfolio')} className="text-zinc-400 hover:text-rose-400 transition-colors">Our Work</button></li>
+                <li><button onClick={() => scrollToSection('pricing')} className="text-zinc-400 hover:text-rose-400 transition-colors">Pricing</button></li>
               </ul>
             </div>
             
@@ -653,27 +720,27 @@ export default function App() {
               <h4 className="text-white font-bold mb-6">Contact Us</h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-400">Ratnagiri, Maharashtra, India</span>
+                  <MapPin className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-zinc-400">Ratnagiri, Maharashtra, India</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                  <a href={PHONE_LINK} className="text-slate-400 hover:text-white transition-colors">+91 98926 76143</a>
+                  <Phone className="w-5 h-5 text-rose-500 flex-shrink-0" />
+                  <a href={PHONE_LINK} className="text-zinc-400 hover:text-white transition-colors">+91 98926 76143</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <WhatsAppIcon className="w-5 h-5 text-[#25D366] flex-shrink-0" />
-                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">Chat on WhatsApp</a>
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">Chat on WhatsApp</a>
                 </li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-500 text-sm">
+            <p className="text-zinc-500 text-sm">
               © {new Date().getFullYear()} Digiकर. All rights reserved.
             </p>
-            <p className="text-slate-500 text-sm flex items-center gap-1">
-              Made with <span className="text-orange-500">♥</span> for Local Businesses
+            <p className="text-zinc-500 text-sm flex items-center gap-1">
+              Made with <span className="text-rose-500">♥</span> for Local Businesses
             </p>
           </div>
         </div>
