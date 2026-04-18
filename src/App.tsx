@@ -125,6 +125,8 @@ const FAQItem: React.FC<{ question: string, answer: string }> = ({ question, ans
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [businessName, setBusinessName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   // Auto-advance testimonials
   useEffect(() => {
@@ -164,7 +166,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <span className="text-3xl font-extrabold tracking-normal bg-gradient-to-r from-rose-500 to-rose-600 bg-clip-text text-transparent">
+              <span className="text-3xl font-extrabold tracking-normal bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
                 Digiकर
               </span>
             </div>
@@ -305,27 +307,65 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className={`bg-[#060606] border border-white/10 p-8 rounded-2xl transition-all duration-500 group hover:-translate-y-2 ${service.border} ${service.shadow} relative overflow-hidden flex flex-col h-full`}
+                  className="relative group rounded-[32px] overflow-hidden transition-all duration-700 hover:-translate-y-3 h-full flex flex-col"
+                  style={{
+                    boxShadow: '0 20px 40px -10px rgba(0,0,0,0.8), inset 0 2px 20px rgba(59, 130, 246, 0.15), inset 0 -2px 30px rgba(0, 0, 0, 0.8)',
+                  }}
                 >
-                  {/* Background Glow Effect on Hover */}
-                  <div className={`absolute top-0 right-0 w-32 h-32 ${service.bg} rounded-bl-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`}></div>
+                  {/* Deep Ambient Deep Blue Base */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#0f1123]/90 via-[#0a0a16]/95 to-[#05050f]/95 backdrop-blur-3xl rounded-[32px] transition-colors duration-500 z-0"></div>
+
+                  {/* Unified Deep Blue Internal Glow replacing the variable colors for the base */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_0%,transparent_100%)] opacity-80 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
+
+                  {/* Beveled 3D Edges */}
+                  <div className={`absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-blue-300/60 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-500 z-10`} style={{ filter: 'blur(1px)' }}></div>
+                  <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-blue-200/80 to-transparent z-10"></div>
                   
-                  <div className={`w-14 h-14 rounded-2xl ${service.bg} flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1 shadow-inner`}>
-                    <service.icon className={`w-7 h-7 ${service.color} transition-transform duration-300 group-hover:rotate-12`} />
-                  </div>
+                  {/* Side reflections for 3D extrusion */}
+                  <div className="absolute inset-y-8 left-0 w-[1px] bg-gradient-to-b from-transparent via-blue-400/20 to-transparent z-10 opacity-50"></div>
+                  <div className="absolute inset-y-8 right-0 w-[1px] bg-gradient-to-b from-transparent via-blue-400/20 to-transparent z-10 opacity-50"></div>
+
+                  {/* Bottom Edge Heavy Glow line */}
+                  <div className={`absolute bottom-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500 z-10 blur-sm`}></div>
+
+                  {/* Volumetric Internal Wash (Bottom - Blue with hint of accent) */}
+                  <div className={`absolute -bottom-24 -inset-x-10 h-3/4 bg-gradient-to-t ${service.color.replace('text-', 'from-').replace('-400', '-500/30')} via-blue-900/40 to-transparent blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 z-0`}></div>
                   
-                  <h3 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-white transition-colors">{service.title}</h3>
-                  <p className="text-zinc-400 leading-relaxed mb-8 flex-grow">{service.desc}</p>
-                  
-                  {/* Benefit Section */}
-                  <div className="mt-auto pt-5 border-t border-white/10/50 flex items-start gap-3">
-                    <div className={`mt-0.5 rounded-full ${service.bg} p-1`}>
-                      <CheckCircle2 className={`w-4 h-4 ${service.color}`} />
+                  {/* Volumetric Internal Wash (Top - Deep Blue) */}
+                  <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-blue-600/30 via-indigo-900/10 to-transparent blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
+
+                  {/* Noise overlay to give it that premium texture like the image */}
+                  <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0"></div>
+
+                  {/* Actual Content Area */}
+                  <div className="relative z-20 p-8 flex flex-col h-full rounded-[32px] border-t border-white/10 group-hover:border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-500">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-white/0 border border-white/10 flex items-center justify-center mb-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_4px_20px_rgba(37,99,235,0.15)] group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_8px_30px_rgba(37,99,235,0.3)] transition-all duration-500 backdrop-blur-md">
+                      <service.icon className={`w-8 h-8 ${service.color} transition-transform duration-500 group-hover:rotate-12 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]`} />
                     </div>
-                    <p className="text-sm font-medium text-zinc-300">
-                      <span className="text-zinc-500 block text-xs uppercase tracking-wider mb-0.5">Outcome</span>
+                    
+                    <h3 className="text-2xl font-bold text-white mb-3 tracking-tight drop-shadow-md">{service.title}</h3>
+                    <p className="text-blue-50/70 leading-relaxed mb-6 flex-grow">{service.desc}</p>
+                    
+                    {/* Benefit Text */}
+                    <div className="mb-6 flex items-center text-sm font-semibold text-blue-100/90 bg-blue-900/40 w-fit py-1.5 px-3.5 rounded-full border border-blue-500/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] backdrop-blur-md">
+                      <CheckCircle2 className={`w-3.5 h-3.5 mr-2 ${service.color}`} />
                       {service.benefit}
-                    </p>
+                    </div>
+
+                    {/* CTA Section */}
+                    <div className="mt-auto pt-6 border-t border-blue-500/10">
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi Digiकर, I'm interested in the ${service.title} service!`)}`, '_blank');
+                        }}
+                        className="w-full inline-flex items-center justify-center text-sm font-bold text-white bg-blue-600/20 hover:bg-blue-600/60 py-3.5 px-4 rounded-xl border border-blue-400/20 hover:border-blue-400/60 shadow-[0_0_15px_rgba(37,99,235,0.15)] transition-all duration-300 cursor-pointer z-30 relative group/btn"
+                      >
+                        Learn More <span className="opacity-70 font-normal ml-1">on WhatsApp</span>
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -338,35 +378,78 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Why Choose <span className="text-rose-500">Digiकर</span>?</h2>
+                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Why Choose <span className="text-blue-500">Digiकर</span>?</h2>
                 <p className="text-zinc-400 text-lg mb-8">
                   We understand local businesses. You don't need a ₹50,000 complex website. You need a fast, affordable solution that brings customers to your door.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-4 mb-10">
-                  <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-colors">
-                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 mb-1">
-                      <AnimatedCounter value={2} suffix=" Days" />
+                  <div className="relative group p-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1"
+                       style={{ boxShadow: '0 10px 30px -10px rgba(0,0,0,0.8), inset 0 1px 15px rgba(59, 130, 246, 0.1), inset 0 -1px 20px rgba(0, 0, 0, 0.6)' }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f1123]/80 to-[#05050f]/90 backdrop-blur-3xl z-0"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_100%)] opacity-80 group-hover:opacity-100 transition-opacity z-0"></div>
+                    <div className="absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-blue-300/40 to-transparent z-10"></div>
+                    <div className="absolute bottom-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent z-10"></div>
+                    <div className="absolute -bottom-10 -inset-x-5 h-1/2 bg-gradient-to-t from-blue-500/20 to-transparent blur-2xl z-0"></div>
+                    
+                    <div className="relative z-20 flex flex-col items-center text-center">
+                      <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-blue-200 mb-1 drop-shadow-[0_2px_10px_rgba(59,130,246,0.3)]">
+                        <AnimatedCounter value={2} suffix=" Days" />
+                      </div>
+                      <div className="text-sm text-blue-100/60 font-medium tracking-wide uppercase group-hover:text-blue-100/80 transition-colors">Fast Delivery</div>
                     </div>
-                    <div className="text-sm text-zinc-400 font-medium">Fast Delivery</div>
                   </div>
-                  <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-colors">
-                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 mb-1">
-                      <AnimatedCounter value={5} suffix="+" />
+
+                  <div className="relative group p-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1"
+                       style={{ boxShadow: '0 10px 30px -10px rgba(0,0,0,0.8), inset 0 1px 15px rgba(59, 130, 246, 0.1), inset 0 -1px 20px rgba(0, 0, 0, 0.6)' }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f1123]/80 to-[#05050f]/90 backdrop-blur-3xl z-0"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_100%)] opacity-80 group-hover:opacity-100 transition-opacity z-0"></div>
+                    <div className="absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-blue-300/40 to-transparent z-10"></div>
+                    <div className="absolute bottom-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent z-10"></div>
+                    <div className="absolute -bottom-10 -inset-x-5 h-1/2 bg-gradient-to-t from-blue-500/20 to-transparent blur-2xl z-0"></div>
+
+                    <div className="relative z-20 flex flex-col items-center text-center">
+                      <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-blue-200 mb-1 drop-shadow-[0_2px_10px_rgba(59,130,246,0.3)]">
+                        <AnimatedCounter value={5} suffix="+" />
+                      </div>
+                      <div className="text-sm text-blue-100/60 font-medium tracking-wide uppercase group-hover:text-blue-100/80 transition-colors">Years of Exp</div>
                     </div>
-                    <div className="text-sm text-zinc-400 font-medium">Years of Experience</div>
                   </div>
-                  <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-colors">
-                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 mb-1">
-                      <AnimatedCounter value={200} suffix="+" />
+
+                  <div className="relative group p-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1"
+                       style={{ boxShadow: '0 10px 30px -10px rgba(0,0,0,0.8), inset 0 1px 15px rgba(59, 130, 246, 0.1), inset 0 -1px 20px rgba(0, 0, 0, 0.6)' }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f1123]/80 to-[#05050f]/90 backdrop-blur-3xl z-0"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_100%)] opacity-80 group-hover:opacity-100 transition-opacity z-0"></div>
+                    <div className="absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-blue-300/40 to-transparent z-10"></div>
+                    <div className="absolute bottom-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent z-10"></div>
+                    <div className="absolute -bottom-10 -inset-x-5 h-1/2 bg-gradient-to-t from-blue-500/20 to-transparent blur-2xl z-0"></div>
+
+                    <div className="relative z-20 flex flex-col items-center text-center">
+                      <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-blue-200 mb-1 drop-shadow-[0_2px_10px_rgba(59,130,246,0.3)]">
+                        <AnimatedCounter value={200} suffix="+" />
+                      </div>
+                      <div className="text-sm text-blue-100/60 font-medium tracking-wide uppercase group-hover:text-blue-100/80 transition-colors">Happy Clients</div>
                     </div>
-                    <div className="text-sm text-zinc-400 font-medium">Happy Clients</div>
                   </div>
-                  <div className="p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-white/20 transition-colors">
-                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500 mb-1">
-                      <AnimatedCounter value={99} suffix="%" />
+
+                  <div className="relative group p-5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1"
+                       style={{ boxShadow: '0 10px 30px -10px rgba(0,0,0,0.8), inset 0 1px 15px rgba(59, 130, 246, 0.1), inset 0 -1px 20px rgba(0, 0, 0, 0.6)' }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0f1123]/80 to-[#05050f]/90 backdrop-blur-3xl z-0"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_100%)] opacity-80 group-hover:opacity-100 transition-opacity z-0"></div>
+                    <div className="absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-blue-300/40 to-transparent z-10"></div>
+                    <div className="absolute bottom-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent z-10"></div>
+                    <div className="absolute -bottom-10 -inset-x-5 h-1/2 bg-gradient-to-t from-blue-500/20 to-transparent blur-2xl z-0"></div>
+
+                    <div className="relative z-20 flex flex-col items-center text-center">
+                      <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-blue-200 mb-1 drop-shadow-[0_2px_10px_rgba(59,130,246,0.3)]">
+                        <AnimatedCounter value={99} suffix="%" />
+                      </div>
+                      <div className="text-sm text-blue-100/60 font-medium tracking-wide uppercase group-hover:text-blue-100/80 transition-colors">Satisfaction Rate</div>
                     </div>
-                    <div className="text-sm text-zinc-400 font-medium">Satisfaction Rate</div>
                   </div>
                 </div>
                 
@@ -386,11 +469,11 @@ export default function App() {
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
                     >
                       <motion.div 
-                        className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500/10 to-purple-500/10 border border-white/5 flex items-center justify-center shadow-[0_0_15px_rgba(244,63,94,0.05)] group-hover:border-rose-500/30 group-hover:bg-rose-500/20 transition-colors"
+                        className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/10 to-indigo-500/10 border border-blue-500/10 flex items-center justify-center shadow-[inset_0_1px_2px_rgba(255,255,255,0.05),0_0_15px_rgba(59,130,246,0.1)] group-hover:border-blue-400/30 group-hover:bg-blue-500/20 transition-all duration-300 backdrop-blur-md"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       >
-                        <item.icon className="w-6 h-6 text-rose-400 group-hover:text-rose-300 transition-colors" />
+                        <item.icon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
                       </motion.div>
                       <div>
                         <h4 className="text-lg font-bold text-zinc-200 group-hover:text-white transition-colors">{item.title}</h4>
@@ -401,25 +484,76 @@ export default function App() {
                 </div>
               </div>
               
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-rose-500/20 to-blue-500/20 rounded-3xl blur-3xl -z-10"></div>
-                <div className="bg-zinc-900 border border-white/10 rounded-3xl p-8 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-bl-full"></div>
-                  <h3 className="text-2xl font-bold mb-6">Ready to start?</h3>
-                  <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); window.open(WHATSAPP_LINK, '_blank'); }}>
+              <div 
+                className="relative group rounded-[32px] overflow-hidden transition-all duration-700 hover:-translate-y-3 flex flex-col"
+                style={{
+                  boxShadow: '0 20px 40px -10px rgba(0,0,0,0.8), inset 0 2px 20px rgba(59, 130, 246, 0.15), inset 0 -2px 30px rgba(0, 0, 0, 0.8)',
+                }}
+              >
+                {/* Deep Ambient Deep Blue Base */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0f1123]/90 via-[#0a0a16]/95 to-[#05050f]/95 backdrop-blur-3xl rounded-[32px] transition-colors duration-500 z-0"></div>
+
+                {/* Unified Deep Blue Internal Glow */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_0%,transparent_100%)] opacity-80 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
+
+                {/* Beveled 3D Edges */}
+                <div className="absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-blue-300/60 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-500 z-10" style={{ filter: 'blur(1px)' }}></div>
+                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-blue-200/80 to-transparent z-10"></div>
+                
+                {/* Side reflections for 3D extrusion */}
+                <div className="absolute inset-y-8 left-0 w-[1px] bg-gradient-to-b from-transparent via-blue-400/20 to-transparent z-10 opacity-50"></div>
+                <div className="absolute inset-y-8 right-0 w-[1px] bg-gradient-to-b from-transparent via-blue-400/20 to-transparent z-10 opacity-50"></div>
+
+                {/* Bottom Edge Heavy Glow line */}
+                <div className="absolute bottom-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500 z-10 blur-sm"></div>
+
+                {/* Volumetric Internal Wash (Bottom) */}
+                <div className="absolute -bottom-24 -inset-x-10 h-3/4 bg-gradient-to-t from-blue-500/30 via-blue-900/40 to-transparent blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
+                
+                {/* Volumetric Internal Wash (Top) */}
+                <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-blue-600/30 via-indigo-900/10 to-transparent blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-700 z-0"></div>
+
+                {/* Noise overlay */}
+                <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0"></div>
+
+                {/* Actual Content */}
+                <div className="relative z-20 p-8 flex flex-col h-full rounded-[32px] border-t border-white/10 group-hover:border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-500">
+                  <h3 className="text-3xl font-bold text-white mb-6 tracking-tight drop-shadow-md">Ready to start?</h3>
+                  <form className="space-y-4" onSubmit={(e) => { 
+                    e.preventDefault(); 
+                    const text = encodeURIComponent(`Hi Digiकर, I want to get my business online!\nBusiness Name: ${businessName}\nPhone: ${phoneNumber}`);
+                    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+                  }}>
                     <div>
-                      <label className="block text-sm font-medium text-zinc-400 mb-1">Business Name</label>
-                      <input type="text" className="w-full bg-[#060606] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-colors" placeholder="e.g. Sharma Dental Clinic" />
+                      <label className="block text-sm font-medium text-blue-100/70 mb-2 ml-1">Business Name</label>
+                      <input 
+                        type="text" 
+                        value={businessName}
+                        onChange={(e) => setBusinessName(e.target.value)}
+                        className="w-full bg-black/40 border border-blue-500/20 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500 focus:bg-blue-900/20 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-white/20 shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]" 
+                        placeholder="e.g. Sharma Dental Clinic" 
+                        required
+                      />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-zinc-400 mb-1">Phone Number</label>
-                      <input type="tel" className="w-full bg-[#060606] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-colors" placeholder="+91" />
+                      <label className="block text-sm font-medium text-blue-100/70 mb-2 ml-1">Phone Number</label>
+                      <input 
+                        type="tel" 
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        className="w-full bg-black/40 border border-blue-500/20 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500 focus:bg-blue-900/20 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-white/20 shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]" 
+                        placeholder="+91" 
+                        required
+                      />
                     </div>
-                    <button type="submit" className="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 mt-2">
-                      Get Free Consultation
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                    <p className="text-xs text-zinc-500 text-center mt-4">We will contact you within 2 hours.</p>
+                    
+                    <div className="pt-4">
+                      <button type="submit" className="w-full inline-flex items-center justify-center text-sm font-bold text-white bg-blue-600/30 hover:bg-blue-600/60 py-4 px-4 rounded-xl border border-blue-400/30 hover:border-blue-400/60 shadow-[0_0_15px_rgba(37,99,235,0.2)] transition-all duration-300 cursor-pointer z-30 relative group/submit">
+                        Get Free Consultation
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover/submit:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                    <p className="text-xs text-blue-200/50 text-center mt-4">We will contact you within 2 hours.</p>
                   </form>
                 </div>
               </div>
@@ -690,7 +824,7 @@ export default function App() {
           <div className="grid md:grid-cols-3 gap-12 mb-12">
             <div>
               <div className="flex items-center mb-6">
-                <span className="text-4xl font-extrabold tracking-normal bg-gradient-to-r from-rose-500 to-rose-600 bg-clip-text text-transparent">
+                <span className="text-4xl font-extrabold tracking-normal bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
                   Digiकर
                 </span>
               </div>
