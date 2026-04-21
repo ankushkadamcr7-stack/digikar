@@ -219,68 +219,180 @@ export default function App() {
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section id="home" className="relative overflow-hidden pt-20 pb-24 lg:pt-40 lg:pb-48">
-          <div className="absolute inset-0 bg-[#060606] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/40 via-[#060606] text-white to-[#060606] -z-10"></div>
+        <section id="home" className="relative overflow-hidden min-h-[90vh] flex items-center pt-24 pb-20">
+          <div className="absolute inset-0 bg-[#060606] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-[#060606] text-white to-[#060606] -z-10"></div>
           
-          <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-rose-500/15 rounded-full blur-[120px] -z-10"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px] -z-10"></div>
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay -z-10"></div>
+          <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-[120px] -z-10"></div>
+          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-purple-500/15 rounded-full blur-[120px] -z-10"></div>
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay -z-10"></div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 text-rose-400 text-sm font-semibold mb-8 border border-rose-500/20 backdrop-blur-md"
-            >
-              <Zap className="w-4 h-4" />
-              <span>Limited Time Offer for Local Businesses</span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-6 leading-[1.1] text-white"
-            >
-              Take Your Business Online <br className="hidden md:block" />
-              & Start Getting Customers <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-purple-500">Daily.</span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-6 text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 font-medium leading-relaxed"
-            >
-              Website + Google Ranking + Leads — All in One Place. <br className="hidden sm:block" />
-              <span className="text-zinc-300">Aapka business, ab online daudega!</span>
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            >
-              <a 
-                href="#pricing"
-                onClick={(e) => { e.preventDefault(); scrollToSection('pricing'); }}
-                className="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full text-white bg-white/10 hover:bg-white/20 border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all hover:scale-105 flex items-center justify-center gap-2"
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+              <div className="text-left">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-300 text-sm font-semibold mb-6 border border-blue-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(59,130,246,0.1)]"
+                >
+                  <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                  <span>Trusted by Growing Businesses</span>
+                </motion.div>
+                
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-6 leading-[1.1] text-white"
+                >
+                  Turn Your Business Into a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Lead-Generating Machine 🚀</span>
+                </motion.h1>
+                
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="text-xl md:text-2xl text-blue-50/70 mb-10 max-w-2xl font-light leading-relaxed"
+                >
+                  We build high-converting websites, run powerful ads, and rank your business on Google to bring you real customers.
+                </motion.p>
+                
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-start items-center lg:items-start"
+                >
+                  <a 
+                    href="#contact"
+                    onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
+                    className="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full text-white bg-blue-600 hover:bg-blue-500 shadow-[0_0_30px_rgba(37,99,235,0.4)] transition-all hover:scale-105 flex items-center justify-center gap-2 border border-blue-400/50"
+                  >
+                    Get Free Website Audit
+                    <ArrowRight className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href={WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full text-white bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md transition-all hover:scale-105 flex items-center justify-center gap-2"
+                  >
+                    <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                    Chat on WhatsApp
+                  </a>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 1 }}
+                  className="mt-12 flex items-center gap-4 text-sm text-zinc-400"
+                >
+                  <div className="flex -space-x-3">
+                    {[1, 2, 3, 4].map(i => (
+                      <div key={i} className={`w-10 h-10 rounded-full border-2 border-[#060606] bg-gradient-to-br from-blue-400 flex items-center justify-center text-white font-bold text-xs shadow-lg z-${40-i*10}`} style={{ backgroundImage: `url(https://i.pravatar.cc/100?img=${i+10})`, backgroundSize: 'cover' }}></div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-1 text-yellow-400">
+                      {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-4 h-4 fill-current" />)}
+                    </div>
+                    <span>Loved by business owners</span>
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* Animated Right Side Graphic */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative hidden lg:block"
               >
-                Get Website Now
-                <ArrowRight className="w-5 h-5" />
-              </a>
-              <a 
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 text-base font-bold rounded-full text-zinc-900 bg-white hover:bg-zinc-200 transition-all hover:scale-105 flex items-center justify-center gap-2"
-              >
-                <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
-                Chat on WhatsApp
-              </a>
-            </motion.div>
+                <div className="relative w-full aspect-square max-w-[600px] mx-auto">
+                  {/* Floating Elements Background */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+                  
+                  {/* Dashboard Mockup */}
+                  <motion.div 
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                    className="absolute top-10 right-0 w-[350px] bg-[#0a0a16] border border-white/10 rounded-2xl p-4 shadow-2xl backdrop-blur-xl z-20"
+                    style={{ boxShadow: '0 20px 40px -10px rgba(0,0,0,0.8), inset 0 2px 20px rgba(59, 130, 246, 0.1)' }}
+                  >
+                    <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
+                      <div className="text-sm font-semibold text-white flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4 text-blue-400" /> New Customer Leads
+                      </div>
+                      <span className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">+24% Today</span>
+                    </div>
+                    <div className="space-y-3">
+                      {[1, 2, 3].map(i => (
+                        <div key={i} className="flex items-center gap-3 bg-white/5 p-2 rounded-lg">
+                          <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                            <span className="text-blue-400 text-xs font-bold">L</span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="h-2 w-20 bg-white/20 rounded mb-1"></div>
+                            <div className="h-2 w-12 bg-white/10 rounded"></div>
+                          </div>
+                          <div className="text-xs text-zinc-400">Just now</div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  {/* Phone Mockup */}
+                  <motion.div 
+                    animate={{ y: [0, 15, 0] }}
+                    transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-10 left-0 w-[240px] h-[480px] bg-[#05050f] border-4 border-zinc-800 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_0_20px_rgba(59,130,246,0.2)] z-30 overflow-hidden flex flex-col"
+                  >
+                    {/* Notch */}
+                    <div className="absolute top-0 inset-x-0 h-6 bg-zinc-800 rounded-b-xl w-32 mx-auto z-40"></div>
+                    
+                    <div className="flex-1 overflow-hidden relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-black z-0"></div>
+                      <div className="relative z-10 p-5 pt-12 flex flex-col h-full">
+                        <h3 className="text-xl font-bold text-white mb-1">Your Website</h3>
+                        <p className="text-xs text-blue-200/50 mb-6">Looks perfect everywhere.</p>
+                        
+                        <div className="space-y-3 flex-1">
+                          <div className="h-32 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 shadow-inner"></div>
+                          <div className="grid grid-cols-2 gap-2">
+                            <div className="h-16 rounded-xl bg-white/5 border border-white/10"></div>
+                            <div className="h-16 rounded-xl bg-white/5 border border-white/10"></div>
+                          </div>
+                        </div>
+                        
+                        <div className="mt-auto pt-4 flex gap-2">
+                          <div className="h-10 flex-1 rounded-full bg-blue-500/20 border border-blue-500/30"></div>
+                          <div className="h-10 w-10 shrink-0 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg shadow-green-500/20">
+                            <WhatsAppIcon className="w-4 h-4 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Decorative Elements */}
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+                    className="absolute top-1/2 left-1/4 w-12 h-12 rounded-xl border border-blue-500/30 bg-blue-500/10 backdrop-blur-md flex items-center justify-center z-10"
+                  >
+                    <Search className="w-5 h-5 text-blue-400" />
+                  </motion.div>
+                  <motion.div 
+                    animate={{ rotate: -360 }}
+                    transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+                    className="absolute bottom-1/3 right-1/4 w-14 h-14 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md flex items-center justify-center z-40"
+                  >
+                    <Globe className="w-6 h-6 text-purple-400" />
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -292,14 +404,12 @@ export default function App() {
               <p className="text-zinc-400 text-lg">We don't just build websites; we build lead generation machines for your local business.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {[
-                { icon: Globe, title: "Website Development", desc: "Fast, mobile-friendly website under ₹5000. Perfect for showcasing your services.", benefit: "Builds Trust & Credibility", color: "text-blue-400", bg: "bg-blue-400/10", border: "hover:border-blue-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(96,165,250,0.3)]" },
-                { icon: MapPin, title: "Google My Business", desc: "Rank higher on Google Maps when locals search for your services.", benefit: "More Local Walk-ins", color: "text-red-400", bg: "bg-red-400/10", border: "hover:border-red-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(248,113,113,0.3)]" },
-                { icon: MessageCircle, title: "WhatsApp Integration", desc: "Get direct inquiries from your website straight to your WhatsApp.", benefit: "Instant Customer Chat", color: "text-green-400", bg: "bg-green-400/10", border: "hover:border-green-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(74,222,128,0.3)]" },
-                { icon: TrendingUp, title: "Lead Generation Setup", desc: "Contact forms and call-to-actions designed to convert visitors into customers.", benefit: "More Phone Calls & Leads", color: "text-rose-400", bg: "bg-rose-400/10", border: "hover:border-rose-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(244,63,94,0.3)]" },
-                { icon: Smartphone, title: "Meta Ads Setup", desc: "Start reaching more customers on Facebook and Instagram locally.", benefit: "Targeted Local Reach", color: "text-purple-400", bg: "bg-purple-400/10", border: "hover:border-purple-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(192,132,252,0.3)]" },
-                { icon: Search, title: "SEO Basics", desc: "On-page optimization so Google can easily find and rank your website.", benefit: "Free Organic Traffic", color: "text-teal-400", bg: "bg-teal-400/10", border: "hover:border-teal-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(45,212,191,0.3)]" }
+                { icon: Globe, title: "Website That Brings You Daily Leads", desc: "Fast, mobile-friendly, conversion-focused websites.", benefit: "High Conversions", color: "text-blue-400", bg: "bg-blue-400/10", border: "hover:border-blue-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(96,165,250,0.3)]" },
+                { icon: MapPin, title: "Google Ranking & GMB Optimization", desc: "Get found by customers searching near you.", benefit: "Local Dominance", color: "text-red-400", bg: "bg-red-400/10", border: "hover:border-red-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(248,113,113,0.3)]" },
+                { icon: TrendingUp, title: "Paid Ads That Generate Customers", desc: "Facebook & Google Ads that convert.", benefit: "Instant Traffic", color: "text-green-400", bg: "bg-green-400/10", border: "hover:border-green-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(74,222,128,0.3)]" },
+                { icon: Smartphone, title: "Content & Social Growth", desc: "Build brand and attract audience.", benefit: "Brand Awareness", color: "text-purple-400", bg: "bg-purple-400/10", border: "hover:border-purple-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(192,132,252,0.3)]" }
               ].map((service, idx) => (
                 <motion.div 
                   key={idx}
@@ -455,10 +565,10 @@ export default function App() {
                 
                 <div className="space-y-6">
                   {[
-                    { icon: Zap, title: "Affordable Pricing", desc: "Complete package at just ₹4999. No hidden charges." },
-                    { icon: Clock, title: "Fast Delivery", desc: "Your website goes live in just 2-3 days." },
-                    { icon: MonitorSmartphone, title: "Mobile Optimized", desc: "Looks perfect on every phone, where 90% of your customers are." },
-                    { icon: Headset, title: "Personal Support", desc: "Direct WhatsApp support. No bots, talk to real humans." }
+                    { icon: CheckCircle2, title: "Result-focused strategy", desc: "We design everything to get you more calls and local leads." },
+                    { icon: Zap, title: "Affordable pricing for small businesses", desc: "Premium quality without the ₹50,000 price tag." },
+                    { icon: Clock, title: "Fast delivery", desc: "Get online quickly without months of waiting." },
+                    { icon: Headset, title: "Personal support (WhatsApp)", desc: "Talk directly to us on WhatsApp - no automated bots." }
                   ].map((item, idx) => (
                     <motion.div 
                       key={idx} 
@@ -561,55 +671,107 @@ export default function App() {
           </div>
         </section>
 
-        {/* Portfolio / Demos */}
-        <section id="portfolio" className="py-24 bg-zinc-900/30 border-y border-white/10/50">
+        {/* About Us */}
+        <section id="about" className="py-24 relative overflow-hidden bg-[#060606]">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px] -z-10"></div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative"
+              >
+                <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.1)] relative group">
+                  <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay z-10"></div>
+                  <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop" alt="Founder of Digiकर" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl z-20">
+                    <p className="text-white font-bold text-lg">Ankush Kadam</p>
+                    <p className="text-blue-400 text-sm">Founder of Digiकर</p>
+                  </div>
+                </div>
+                {/* Decorative blob behind image */}
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/20 blur-[50px] -z-10"></div>
+              </motion.div>
+              
+              <div className="text-left">
+                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Our Mission at <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Digiकर</span></h2>
+                <div className="space-y-6 text-lg text-blue-50/70 leading-relaxed font-light">
+                  <p>
+                    "We started Digiकर with a mission to help local businesses grow online without confusion."
+                  </p>
+                  <p>
+                    Many businesses struggle to get customers online — we solve that with simple, powerful digital solutions. From highly optimized websites to precise ad targeting, we take care of the tech so you can focus on running your business.
+                  </p>
+                  <p>
+                    Our goal isn't just to build a website; it's to build a tool that works for you 24/7, generating leads and driving real revenue.
+                  </p>
+                </div>
+                
+                <div className="mt-10">
+                  <a 
+                    href="#portfolio"
+                    onClick={(e) => { e.preventDefault(); scrollToSection('portfolio'); }}
+                    className="inline-flex items-center text-sm font-bold text-white bg-blue-600/20 hover:bg-blue-600/40 py-3.5 px-6 rounded-xl border border-blue-400/20 transition-all duration-300"
+                  >
+                    See Our Work <ArrowRight className="w-4 h-4 ml-2" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Portfolio / Work */}
+        <section id="portfolio" className="py-24 bg-zinc-900/30 border-y border-white/10/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Websites That Work</h2>
-              <p className="text-zinc-400 text-lg">See how we help different local businesses establish their online presence.</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Our Work & Results</h2>
+              <p className="text-zinc-400 text-lg">Real websites bringing real leads to local businesses.</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: "Healthcare & Medical", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop", tag: "Clinic / Hospital" },
-                { title: "Fitness & Sports", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop", tag: "Gym / Yoga" },
-                { title: "Food & Restaurant", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop", tag: "Cafe / Dining" },
-                { title: "Travel & Hospitality", img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=800&auto=format&fit=crop", tag: "Tours / Hotels" },
-                { title: "Real Estate & Construction", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop", tag: "Property / Builders" },
-                { title: "Local Shops & Businesses", img: "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?q=80&w=800&auto=format&fit=crop", tag: "Retail / Stores" },
-                { title: "Education & Coaching", img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop", tag: "Classes / Tutors" },
-                { title: "Beauty & Personal Care", img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop", tag: "Salon / Spa" },
-                { title: "Automobile Services", img: "https://images.unsplash.com/photo-1613214149922-f1809c99b414?q=80&w=800&auto=format&fit=crop", tag: "Garage / Wash" },
-                { title: "Personal Brands & Freelancers", img: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop", tag: "Portfolio / Resume" }
-              ].map((demo, idx) => (
+                { title: "Sharma Dental Clinic", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop", type: "Healthcare / Clinic", result: "Increased leads from 0 to 20/month" },
+                { title: "Peak Fitness Gym", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop", type: "Fitness Center", result: "Generated 50+ walk-ins via local SEO" },
+                { title: "Royal Spice Restaurant", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop", type: "Restaurant", result: "300% boost in direct WhatsApp orders" },
+                { title: "Sunrise Travels", img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=800&auto=format&fit=crop", type: "Tours & Travels", result: "Ranked #1 for local tour queries" },
+                { title: "Elite Construction", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop", type: "Builders", result: "Captured high-ticket investor leads" },
+                { title: "Glow Beauty Salon", img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop", type: "Salon", result: "Doubled weekend appointments" }
+              ].map((project, idx) => (
                 <motion.div 
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="group cursor-pointer"
+                  className="group cursor-pointer flex flex-col"
                 >
-                  <div className="relative overflow-hidden rounded-2xl aspect-[4/3] mb-4 border border-white/10">
-                    <img src={demo.img} alt={demo.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80"></div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <span className="inline-block px-2 py-1 bg-rose-500/20 text-rose-400 text-xs font-bold rounded mb-2 backdrop-blur-sm border border-rose-500/20">{demo.tag}</span>
-                      <h3 className="text-xl font-bold text-white">{demo.title}</h3>
+                  <div className="relative overflow-hidden rounded-[24px] aspect-[4/3] mb-5 border border-white/5 shadow-lg group-hover:border-blue-500/30 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500">
+                    <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#060606] via-transparent to-transparent opacity-90"></div>
+                    <div className="absolute bottom-5 left-5 right-5">
+                      <span className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded-full mb-2 backdrop-blur-md border border-blue-500/30">{project.type}</span>
+                      <h3 className="text-xl font-bold text-white tracking-tight">{project.title}</h3>
                     </div>
+                  </div>
+                  <div className="bg-[#0a0a16] border border-white/5 rounded-2xl p-4 flex items-start gap-3 shadow-inner">
+                    <TrendingUp className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                    <p className="text-sm font-medium text-blue-50/80 leading-snug">{project.result}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
             
-            <div className="mt-12 text-center">
+            <div className="mt-16 text-center">
               <a 
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-rose-400 font-medium hover:text-rose-300 transition-colors"
+                className="inline-flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition-colors uppercase tracking-wide text-sm"
               >
-                Get a Similar Website for Your Business <ChevronRight className="w-4 h-4" />
+                Get a Similar Website for Your Business <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </div>
           </div>
@@ -644,69 +806,45 @@ export default function App() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-24 bg-zinc-900/50 border-y border-white/10/50">
+        <section className="py-24 border-y border-white/10/40 relative overflow-hidden bg-[#060606]">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900/10 via-[#060606] to-[#060606] -z-10"></div>
+          
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Trusted by Local Businesses</h2>
-              <p className="text-zinc-400 text-lg">See what our clients have to say about our services.</p>
+              <p className="text-blue-50/70 text-lg font-light">See what our clients have to say about our services.</p>
             </div>
 
-            <div className="relative max-w-4xl mx-auto">
-              {/* Slider Controls */}
-              <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12 z-10">
-                <button 
-                  onClick={prevTestimonial}
-                  className="w-10 h-10 rounded-full bg-white/5 text-white flex items-center justify-center hover:bg-rose-600 transition-colors shadow-lg"
-                  aria-label="Previous testimonial"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-              </div>
-              
-              <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-10">
-                <button 
-                  onClick={nextTestimonial}
-                  className="w-10 h-10 rounded-full bg-white/5 text-white flex items-center justify-center hover:bg-rose-600 transition-colors shadow-lg"
-                  aria-label="Next testimonial"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Slider Content */}
-              <div className="overflow-hidden px-2 py-4">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={testimonialIndex}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-[#0a0a0a] border border-white/5 p-8 md:p-10 rounded-3xl flex flex-col items-center text-center hover:bg-white/[0.02] hover:border-white/10 transition-colors shadow-2xl"
-                  >
-                    <div className="flex gap-1 text-rose-500 mb-6">
-                      {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { name: "Rahul S.", biz: "Fitness Studio Owner", text: "Digiकर built my website and I started getting calls within a week! The WhatsApp integration is amazing." },
+                { name: "Dr. Anjali M.", biz: "Dental Clinic", text: "Very professional service. They understood exactly what a clinic needs. Highly recommended for the price!" },
+                { name: "Amit P.", biz: "Real Estate Agent", text: "The lead generation form is working wonders. I get 3-4 solid property inquiries every week directly to my email." },
+                { name: "Sneha R.", biz: "Yoga Instructor", text: "Digiकर made the whole process so simple. I just sent my photos and they handled the rest. Beautiful website!" },
+                { name: "Neha Gupta", biz: "Makeup Artist", text: "My portfolio looks stunning on mobile. Most of my brides find me through the new Google ranking. Thank you!" }
+              ].slice(0, 3).map((testimonial, idx) => (
+                <div key={idx} className="bg-[#0a0a16] border border-blue-500/10 p-8 rounded-3xl flex flex-col hover:border-blue-500/30 transition-colors shadow-lg relative group">
+                  <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
+                  
+                  <div className="flex gap-1 text-blue-400 mb-6 drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+                  </div>
+                  <p className="text-blue-50/80 text-base mb-8 italic leading-relaxed flex-grow">"{testimonial.text}"</p>
+                  <div className="mt-auto pt-4 border-t border-blue-500/10 w-full flex items-center justify-between">
+                    <div>
+                      <p className="font-bold text-white">{testimonial.name}</p>
+                      <p className="text-sm text-blue-400">{testimonial.biz}</p>
                     </div>
-                    <p className="text-zinc-300 text-lg md:text-xl mb-8 italic leading-relaxed">"{testimonials[testimonialIndex].text}"</p>
-                    <div className="mt-auto pt-6 border-t border-white/10/50 w-full">
-                      <p className="font-bold text-white text-lg">{testimonials[testimonialIndex].name}</p>
-                      <p className="text-md text-rose-500">{testimonials[testimonialIndex].biz}</p>
+                    <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300 font-bold shrink-0">
+                      {testimonial.name.charAt(0)}
                     </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              {/* Dots */}
-              <div className="flex flex-wrap justify-center gap-2 mt-8">
-                {testimonials.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setTestimonialIndex(idx)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === testimonialIndex ? 'bg-rose-500 w-8' : 'bg-white/20 hover:bg-white/40'}`}
-                    aria-label={`Go to testimonial ${idx + 1}`}
-                  />
-                ))}
-              </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-12 text-center lg:hidden">
+                {/* Fallback for responsive spacing if needed */}
             </div>
           </div>
         </section>
@@ -791,27 +929,33 @@ export default function App() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-20 bg-gradient-to-r from-rose-600 to-purple-600 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+        <section className="py-24 bg-gradient-to-r from-blue-900 to-[#060606] relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] mix-blend-overlay"></div>
+          
+          {/* Light bloom effect */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/20 rounded-full blur-[100px] -z-10 animate-pulse" style={{ animationDuration: '6s' }}></div>
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-500/20 rounded-full blur-[80px] -z-10"></div>
+
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-white mb-6">Don’t Lose Customers to Your Competitors</h2>
-            <p className="text-rose-100 text-xl font-medium mb-10">Go online today and start getting more leads, more calls, and more business.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <h2 className="text-5xl md:text-6xl font-extrabold tracking-tighter text-white mb-6 drop-shadow-md">Ready to Grow Your Business Online?</h2>
+            <p className="text-blue-100/80 text-xl font-light mb-12">Get a Free Consultation Today. We're here to help.</p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a 
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 text-lg font-bold rounded-full text-purple-600 bg-white hover:bg-white/90 transition-all flex items-center justify-center gap-2 shadow-xl"
+                className="px-8 py-4 text-base font-bold rounded-full text-white bg-[#25D366] hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(37,211,102,0.3)] hover:scale-105"
               >
-                <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                <WhatsAppIcon className="w-5 h-5 text-white" />
                 WhatsApp Now
               </a>
               <a 
                 href={PHONE_LINK}
-                className="px-8 py-4 text-lg font-bold rounded-full text-white bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center gap-2 border border-white/20 backdrop-blur-md"
+                className="px-8 py-4 text-base font-bold rounded-full text-white bg-blue-600 hover:bg-blue-500 transition-all flex items-center justify-center gap-2 border border-blue-400/50 shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:scale-105 backdrop-blur-md"
               >
                 <Phone className="w-5 h-5" />
-                Call Now
+                Book Free Call
               </a>
             </div>
           </div>
@@ -819,62 +963,62 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#060606] border-t border-slate-900 pt-16 pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            <div>
+      <footer className="bg-[#05050f] border-t border-white/5 pt-16 pb-8 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-600/5 rounded-full blur-[80px] -z-10"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div className="md:col-span-2">
               <div className="flex items-center mb-6">
-                <span className="text-4xl font-extrabold tracking-normal bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
+                <span className="text-3xl font-extrabold tracking-normal bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
                   Digiकर
                 </span>
               </div>
-              <p className="text-zinc-400 mb-6">
-                Empowering local businesses in India with affordable, high-converting websites and digital solutions.
+              <p className="text-blue-50/60 mb-6 font-light max-w-sm leading-relaxed">
+                Helping Businesses Grow Online 🚀
+                <br /><br />
+                We provide premium digital solutions to local businesses, focusing on lead generation and ROI.
               </p>
               <div className="flex gap-4">
-                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:text-[#25D366] hover:bg-white/5 transition-colors">
+                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-blue-900/30 border border-blue-500/20 flex items-center justify-center text-blue-400 hover:text-[#25D366] hover:bg-blue-900/50 transition-colors">
                   <WhatsAppIcon className="w-5 h-5" />
                 </a>
-                <a href="https://www.instagram.com/digikarlo/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:text-pink-500 hover:bg-white/5 transition-colors">
+                <a href="https://www.instagram.com/digikarlo/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-blue-900/30 border border-blue-500/20 flex items-center justify-center text-blue-400 hover:text-pink-500 hover:bg-blue-900/50 transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>
             </div>
             
             <div>
-              <h4 className="text-white font-bold mb-6">Quick Links</h4>
-              <ul className="space-y-3">
-                <li><button onClick={() => scrollToSection('services')} className="text-zinc-400 hover:text-rose-400 transition-colors">Services</button></li>
-                <li><button onClick={() => scrollToSection('portfolio')} className="text-zinc-400 hover:text-rose-400 transition-colors">Our Work</button></li>
-                <li><button onClick={() => scrollToSection('pricing')} className="text-zinc-400 hover:text-rose-400 transition-colors">Pricing</button></li>
+              <h4 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">Quick Links</h4>
+              <ul className="space-y-3 font-light text-sm">
+                <li><button onClick={() => scrollToSection('home')} className="text-blue-50/60 hover:text-blue-400 transition-colors">Home</button></li>
+                <li><button onClick={() => scrollToSection('services')} className="text-blue-50/60 hover:text-blue-400 transition-colors">Services</button></li>
+                <li><button onClick={() => scrollToSection('portfolio')} className="text-blue-50/60 hover:text-blue-400 transition-colors">Our Work</button></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="text-white font-bold mb-6">Contact Us</h4>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-zinc-400">Ratnagiri, Maharashtra, India</span>
+              <h4 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">Contact Us</h4>
+              <ul className="space-y-4 font-light text-sm">
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                  <a href={PHONE_LINK} className="text-blue-50/60 hover:text-white transition-colors">9892676143</a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-rose-500 flex-shrink-0" />
-                  <a href={PHONE_LINK} className="text-zinc-400 hover:text-white transition-colors">+91 98926 76143</a>
+                  <Globe className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                  <a href="http://www.digikarlo.com" target="_blank" rel="noopener noreferrer" className="text-blue-50/60 hover:text-white transition-colors">www.digikarlo.com</a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <WhatsAppIcon className="w-5 h-5 text-[#25D366] flex-shrink-0" />
-                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">Chat on WhatsApp</a>
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366] flex-shrink-0" />
+                  <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-blue-50/60 hover:text-white transition-colors">Chat on WhatsApp</a>
                 </li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-zinc-500 text-sm">
+          <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-blue-50/40 text-xs font-light">
               © {new Date().getFullYear()} Digiकर. All rights reserved.
-            </p>
-            <p className="text-zinc-500 text-sm flex items-center gap-1">
-              Made with <span className="text-rose-500">♥</span> for Local Businesses
             </p>
           </div>
         </div>
