@@ -245,7 +245,7 @@ export default function App() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-6 leading-[1.1] text-white"
                 >
-                  Turn Your Business Into a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Lead-Generating Machine 🚀</span>
+                  Turn Your Business Into a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Lead-Generating Machine</span> <span className="inline-block hover:scale-110 transition-transform origin-bottom-left">🚀</span>
                 </motion.h1>
                 
                 <motion.p 
@@ -358,10 +358,22 @@ export default function App() {
                         <p className="text-xs text-blue-200/50 mb-6">Looks perfect everywhere.</p>
                         
                         <div className="space-y-3 flex-1">
-                          <div className="h-32 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 shadow-inner"></div>
+                          <div className="h-32 rounded-xl bg-slate-800 shadow-inner overflow-hidden relative border border-white/10 group/img">
+                            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=400&auto=format&fit=crop" alt="Hero Mockup" className="w-full h-full object-cover opacity-80 group-hover/img:scale-110 transition-transform duration-700" />
+                            <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
+                              <div className="h-2.5 w-3/4 bg-white/80 rounded mb-1.5"></div>
+                              <div className="h-2 w-1/2 bg-blue-300/80 rounded"></div>
+                            </div>
+                          </div>
                           <div className="grid grid-cols-2 gap-2">
-                            <div className="h-16 rounded-xl bg-white/5 border border-white/10"></div>
-                            <div className="h-16 rounded-xl bg-white/5 border border-white/10"></div>
+                            <div className="h-16 rounded-xl bg-slate-800 border border-white/10 overflow-hidden relative group/img">
+                              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=200&auto=format&fit=crop" alt="Card Mockup" className="w-full h-full object-cover opacity-70 group-hover/img:scale-110 transition-transform duration-700" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            </div>
+                            <div className="h-16 rounded-xl bg-slate-800 border border-white/10 overflow-hidden relative group/img">
+                              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=200&auto=format&fit=crop" alt="Card Mockup 2" className="w-full h-full object-cover opacity-70 group-hover/img:scale-110 transition-transform duration-700" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            </div>
                           </div>
                         </div>
                         
@@ -684,8 +696,8 @@ export default function App() {
                 className="relative"
               >
                 <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.1)] relative group">
-                  <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay z-10"></div>
-                  <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800&auto=format&fit=crop" alt="Founder of Digiकर" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay z-10"></div>
+                  <img src="/founder-new.jpeg" alt="Founder of Digiकर" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl z-20">
                     <p className="text-white font-bold text-lg">Ankush Kadam</p>
                     <p className="text-blue-400 text-sm">Founder of Digiकर</p>
