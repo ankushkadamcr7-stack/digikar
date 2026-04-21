@@ -697,9 +697,16 @@ export default function App() {
               >
                 <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.1)] relative group">
                   <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay z-10"></div>
-                  <img src="/founder-new.jpeg" alt="Founder of Digiकर" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <img 
+                    src="/founder-new.jpeg" 
+                    alt="Ankush Kadam - Founder of Digiकर" 
+                    title="Ankush Kadam, Founder"
+                    itemProp="image"
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  />
                   <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl z-20">
-                    <p className="text-white font-bold text-lg">Ankush Kadam</p>
+                    <p className="text-white font-bold text-lg" itemProp="founder">Ankush Kadam</p>
                     <p className="text-blue-400 text-sm">Founder of Digiकर</p>
                   </div>
                 </div>
