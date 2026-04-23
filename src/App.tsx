@@ -23,6 +23,7 @@ import {
   ChevronDown,
   ChevronLeft
 } from 'lucide-react';
+import founderImg from './founder.jpeg';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +60,7 @@ const testimonials = [
   { name: "Dr. Anjali M.", biz: "Dental Clinic", text: "Very professional service. They understood exactly what a clinic needs. Highly recommended for the price!" },
   { name: "Vikram D.", biz: "Travel Agency", text: "Best investment for my business. The website looks premium and loads very fast. Great support team." },
   { name: "Priya K.", biz: "Boutique Owner", text: "I was worried about the cost, but ₹4999 is a steal for this quality. My online sales have doubled since the launch." },
-  { name: "Amit P.", biz: "Real Estate Agent", text: "The lead generation form is working wonders. I get 3-4 solid property inquiries every week directly to my email." },
+  { name: "Amit P.", biz: "Real Estate Agent", text: "The customer generation form is working wonders. I get 3-4 solid property inquiries every week directly to my email." },
   { name: "Sneha R.", biz: "Yoga Instructor", text: "Digiकर made the whole process so simple. I just sent my photos and they handled the rest. Beautiful website!" },
   { name: "Rajesh V.", biz: "Restaurant Owner", text: "Having our menu online with a direct WhatsApp ordering button has completely changed our takeaway business." },
   { name: "Neha Gupta", biz: "Makeup Artist", text: "My portfolio looks stunning on mobile. Most of my brides find me through the new Google ranking. Thank you!" },
@@ -72,7 +73,7 @@ const testimonials = [
 const faqs = [
   {
     q: "What is included in the ₹4999 package?",
-    a: "You get a premium 5-page mobile-responsive website, WhatsApp chat integration, a lead generation contact form, basic SEO setup, and 1 month of free technical support."
+    a: "You get a premium 5-page mobile-responsive website, WhatsApp chat integration, a customer generation contact form, basic SEO setup, and 1 month of free technical support."
   },
   {
     q: "Do I need to pay for domain and hosting separately?",
@@ -245,7 +246,7 @@ export default function App() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-6 leading-[1.1] text-white"
                 >
-                  Turn Your Business Into a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Lead-Generating Machine</span> <span className="inline-block hover:scale-110 transition-transform origin-bottom-left">🚀</span>
+                  Your Business Deserves More Customers—<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">We Make It Happen</span> <span className="inline-block hover:scale-110 transition-transform origin-bottom-left">🚀</span>
                 </motion.h1>
                 
                 <motion.p 
@@ -322,7 +323,7 @@ export default function App() {
                   >
                     <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
                       <div className="text-sm font-semibold text-white flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-blue-400" /> New Customer Leads
+                        <TrendingUp className="w-4 h-4 text-blue-400" /> New Customers
                       </div>
                       <span className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">+24% Today</span>
                     </div>
@@ -413,12 +414,12 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Everything You Need to Grow</h2>
-              <p className="text-zinc-400 text-lg">We don't just build websites; we build lead generation machines for your local business.</p>
+              <p className="text-zinc-400 text-lg">We don't just build websites; we build customer generation machines for your local business.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {[
-                { icon: Globe, title: "Website That Brings You Daily Leads", desc: "Fast, mobile-friendly, conversion-focused websites.", benefit: "High Conversions", color: "text-blue-400", bg: "bg-blue-400/10", border: "hover:border-blue-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(96,165,250,0.3)]" },
+                { icon: Globe, title: "Website That Brings You Daily Customers", desc: "Fast, mobile-friendly, conversion-focused websites.", benefit: "High Conversions", color: "text-blue-400", bg: "bg-blue-400/10", border: "hover:border-blue-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(96,165,250,0.3)]" },
                 { icon: MapPin, title: "Google Ranking & GMB Optimization", desc: "Get found by customers searching near you.", benefit: "Local Dominance", color: "text-red-400", bg: "bg-red-400/10", border: "hover:border-red-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(248,113,113,0.3)]" },
                 { icon: TrendingUp, title: "Paid Ads That Generate Customers", desc: "Facebook & Google Ads that convert.", benefit: "Instant Traffic", color: "text-green-400", bg: "bg-green-400/10", border: "hover:border-green-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(74,222,128,0.3)]" },
                 { icon: Smartphone, title: "Content & Social Growth", desc: "Build brand and attract audience.", benefit: "Brand Awareness", color: "text-purple-400", bg: "bg-purple-400/10", border: "hover:border-purple-500/50", shadow: "hover:shadow-[0_0_30px_-10px_rgba(192,132,252,0.3)]" }
@@ -577,7 +578,7 @@ export default function App() {
                 
                 <div className="space-y-6">
                   {[
-                    { icon: CheckCircle2, title: "Result-focused strategy", desc: "We design everything to get you more calls and local leads." },
+                    { icon: CheckCircle2, title: "Result-focused strategy", desc: "We design everything to get you more calls and local customers." },
                     { icon: Zap, title: "Affordable pricing for small businesses", desc: "Premium quality without the ₹50,000 price tag." },
                     { icon: Clock, title: "Fast delivery", desc: "Get online quickly without months of waiting." },
                     { icon: Headset, title: "Personal support (WhatsApp)", desc: "Talk directly to us on WhatsApp - no automated bots." }
@@ -698,7 +699,7 @@ export default function App() {
                 <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.1)] relative group">
                   <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay z-10"></div>
                   <img 
-                    src="/founder-new.jpeg" 
+                    src={founderImg} 
                     alt="Ankush Kadam - Founder of Digiकर" 
                     title="Ankush Kadam, Founder"
                     itemProp="image"
@@ -724,7 +725,7 @@ export default function App() {
                     Many businesses struggle to get customers online — we solve that with simple, powerful digital solutions. From highly optimized websites to precise ad targeting, we take care of the tech so you can focus on running your business.
                   </p>
                   <p>
-                    Our goal isn't just to build a website; it's to build a tool that works for you 24/7, generating leads and driving real revenue.
+                    Our goal isn't just to build a website; it's to build a tool that works for you 24/7, generating customers and driving real revenue.
                   </p>
                 </div>
                 
@@ -747,16 +748,16 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">Our Work & Results</h2>
-              <p className="text-zinc-400 text-lg">Real websites bringing real leads to local businesses.</p>
+              <p className="text-zinc-400 text-lg">Real websites bringing real customers to local businesses.</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { title: "Sharma Dental Clinic", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop", type: "Healthcare / Clinic", result: "Increased leads from 0 to 20/month" },
+                { title: "Sharma Dental Clinic", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop", type: "Healthcare / Clinic", result: "Increased customers from 0 to 20/month" },
                 { title: "Peak Fitness Gym", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop", type: "Fitness Center", result: "Generated 50+ walk-ins via local SEO" },
                 { title: "Royal Spice Restaurant", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop", type: "Restaurant", result: "300% boost in direct WhatsApp orders" },
                 { title: "Sunrise Travels", img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=800&auto=format&fit=crop", type: "Tours & Travels", result: "Ranked #1 for local tour queries" },
-                { title: "Elite Construction", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop", type: "Builders", result: "Captured high-ticket investor leads" },
+                { title: "Elite Construction", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop", type: "Builders", result: "Captured high-ticket investor customers" },
                 { title: "Glow Beauty Salon", img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop", type: "Salon", result: "Doubled weekend appointments" }
               ].map((project, idx) => (
                 <motion.div 
@@ -838,7 +839,7 @@ export default function App() {
               {[
                 { name: "Rahul S.", biz: "Fitness Studio Owner", text: "Digiकर built my website and I started getting calls within a week! The WhatsApp integration is amazing." },
                 { name: "Dr. Anjali M.", biz: "Dental Clinic", text: "Very professional service. They understood exactly what a clinic needs. Highly recommended for the price!" },
-                { name: "Amit P.", biz: "Real Estate Agent", text: "The lead generation form is working wonders. I get 3-4 solid property inquiries every week directly to my email." },
+                { name: "Amit P.", biz: "Real Estate Agent", text: "The customer generation form is working wonders. I get 3-4 solid property inquiries every week directly to my email." },
                 { name: "Sneha R.", biz: "Yoga Instructor", text: "Digiकर made the whole process so simple. I just sent my photos and they handled the rest. Beautiful website!" },
                 { name: "Neha Gupta", biz: "Makeup Artist", text: "My portfolio looks stunning on mobile. Most of my brides find me through the new Google ranking. Thank you!" }
               ].slice(0, 3).map((testimonial, idx) => (
@@ -902,7 +903,7 @@ export default function App() {
                     "Premium Mobile-Responsive Design",
                     "Up to 5 Pages (Home, About, Services, etc.)",
                     "WhatsApp Chat Button Integration",
-                    "Lead Generation Contact Form",
+                    "Customer Generation Contact Form",
                     "Google Maps Integration",
                     "Basic SEO Setup",
                     "Fast Loading Speed",
@@ -995,7 +996,7 @@ export default function App() {
               <p className="text-blue-50/60 mb-6 font-light max-w-sm leading-relaxed">
                 Helping Businesses Grow Online 🚀
                 <br /><br />
-                We provide premium digital solutions to local businesses, focusing on lead generation and ROI.
+                We provide premium digital solutions to local businesses, focusing on customer generation and ROI.
               </p>
               <div className="flex gap-4">
                 <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-blue-900/30 border border-blue-500/20 flex items-center justify-center text-blue-400 hover:text-[#25D366] hover:bg-blue-900/50 transition-colors">
