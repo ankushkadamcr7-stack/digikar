@@ -696,7 +696,12 @@ export default function App() {
                 transition={{ duration: 0.8 }}
                 className="relative"
               >
-                <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.1)] relative group">
+                <a 
+                  href="https://www.instagram.com/digikarlo/p/DXeRbsij3jp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.1)] relative group block cursor-pointer"
+                >
                   <img 
                     src={founderImg} 
                     alt="Ankush Kadam - Founder of Digiकर" 
@@ -705,12 +710,18 @@ export default function App() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 relative z-0" 
                   />
                   {/* Safe vignette that works on all mobile browsers instead of mix-blend-overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060606]/80 via-transparent to-black/10 z-10 pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060606]/80 via-transparent to-black/10 z-10 pointer-events-none group-hover:bg-black/20 transition-colors duration-500"></div>
+                  
+                  {/* Instagram icon overlay */}
+                  <div className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                    <Instagram className="w-5 h-5 text-white" />
+                  </div>
+
                   <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl z-20">
                     <p className="text-white font-bold text-lg" itemProp="founder">Ankush Kadam</p>
                     <p className="text-blue-400 text-sm">Founder of Digiकर</p>
                   </div>
-                </div>
+                </a>
                 {/* Decorative blob behind image */}
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/20 blur-[50px] -z-10"></div>
               </motion.div>
