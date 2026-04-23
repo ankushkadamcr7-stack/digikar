@@ -696,33 +696,24 @@ export default function App() {
                 transition={{ duration: 0.8 }}
                 className="relative"
               >
-                <a 
-                  href="https://www.instagram.com/digikarlo/p/DXeRbsij3jp/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.1)] relative group block cursor-pointer"
-                >
+                <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.15)] relative group flex flex-col items-center justify-center bg-[#0a0a16] hover:border-blue-500/30 transition-colors duration-500">
+                  {/* Growth Image */}
                   <img 
-                    src={founderImg} 
-                    alt="Ankush Kadam - Founder of Digiकर" 
-                    title="Ankush Kadam, Founder"
-                    itemProp="image"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 relative z-0" 
+                    src="https://t4.ftcdn.net/jpg/18/53/44/81/360_F_1853448143_MeWFwaTNC5dSxQVy6BQgl71atwrDYRIA.jpg" 
+                    alt="Digiकर Business Growth Success" 
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 z-0" 
                   />
-                  {/* Safe vignette that works on all mobile browsers instead of mix-blend-overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060606]/80 via-transparent to-black/10 z-10 pointer-events-none group-hover:bg-black/20 transition-colors duration-500"></div>
                   
-                  {/* Instagram icon overlay */}
-                  <div className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
-                    <Instagram className="w-5 h-5 text-white" />
-                  </div>
+                  {/* Safe gradient vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060606]/95 via-[#060606]/20 to-black/10 z-10 pointer-events-none group-hover:bg-black/30 transition-colors duration-500"></div>
 
-                  <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-2xl z-20">
-                    <p className="text-white font-bold text-lg" itemProp="founder">Ankush Kadam</p>
-                    <p className="text-blue-400 text-sm">Founder of Digiकर</p>
+                  {/* Info Box */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-xl border border-white/10 p-5 rounded-2xl z-20 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group-hover:bg-black/80 transition-colors duration-500">
+                    <p className="text-white font-bold text-lg tracking-tight" itemProp="founder">Ankush Kadam</p>
+                    <p className="text-blue-400 text-sm font-medium">Founder of Digiकर</p>
                   </div>
-                </a>
-                {/* Decorative blob behind image */}
+                </div>
+                {/* Decorative blob behind card */}
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/20 blur-[50px] -z-10"></div>
               </motion.div>
               
