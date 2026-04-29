@@ -32,7 +32,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const WHATSAPP_NUMBER = "919892676143"; // Replace with actual number
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Digiकर,%20I%20want%20to%20get%20my%20business%20online!`;
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Digikarlo,%20I%20want%20to%20get%20my%20business%20online!`;
 const PHONE_LINK = `tel:+${WHATSAPP_NUMBER}`;
 
 const AnimatedCounter = ({ value, duration = 2, suffix = "", prefix = "" }: { value: number, duration?: number, suffix?: string, prefix?: string }) => {
@@ -61,7 +61,7 @@ const testimonials = [
   { name: "Vikram D.", biz: "Travel Agency", text: "Best investment for my business. The website looks premium and loads very fast. Great support team." },
   { name: "Priya K.", biz: "Boutique Owner", text: "I was worried about the cost, but ₹4999 is a steal for this quality. My online sales have doubled since the launch." },
   { name: "Amit P.", biz: "Real Estate Agent", text: "The customer generation form is working wonders. I get 3-4 solid property inquiries every week directly to my email." },
-  { name: "Sneha R.", biz: "Yoga Instructor", text: "Digiकर made the whole process so simple. I just sent my photos and they handled the rest. Beautiful website!" },
+  { name: "Sneha R.", biz: "Yoga Instructor", text: "Digikarlo made the whole process so simple. I just sent my photos and they handled the rest. Beautiful website!" },
   { name: "Rajesh V.", biz: "Restaurant Owner", text: "Having our menu online with a direct WhatsApp ordering button has completely changed our takeaway business." },
   { name: "Neha Gupta", biz: "Makeup Artist", text: "My portfolio looks stunning on mobile. Most of my brides find me through the new Google ranking. Thank you!" },
   { name: "Sanjay T.", biz: "Auto Repair Shop", text: "Never thought a garage needed a website, but the Google My Business setup brings me new local customers daily." },
@@ -168,7 +168,7 @@ export default function App() {
           <div className="flex justify-between items-center h-20">
             <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <span className="text-3xl font-extrabold tracking-normal bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
-                Digiकर
+                Digikarlo
               </span>
             </div>
             
@@ -481,7 +481,7 @@ export default function App() {
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
-                          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi Digiकर, I'm interested in the ${service.title} service!`)}`, '_blank');
+                          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi Digikarlo, I'm interested in the ${service.title} service!`)}`, '_blank');
                         }}
                         className="w-full inline-flex items-center justify-center text-sm font-bold text-white bg-blue-600/20 hover:bg-blue-600/60 py-3.5 px-4 rounded-xl border border-blue-400/20 hover:border-blue-400/60 shadow-[0_0_15px_rgba(37,99,235,0.15)] transition-all duration-300 cursor-pointer z-30 relative group/btn"
                       >
@@ -501,7 +501,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Why Choose <span className="text-blue-500">Digiकर</span>?</h2>
+                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Why Choose <span className="text-blue-500">Digikarlo</span>?</h2>
                 <p className="text-zinc-400 text-lg mb-8">
                   We understand local businesses. You don't need a ₹50,000 complex website. You need a fast, affordable solution that brings customers to your door.
                 </p>
@@ -644,7 +644,7 @@ export default function App() {
                   <h3 className="text-3xl font-bold text-white mb-6 tracking-tight drop-shadow-md">Ready to start?</h3>
                   <form className="space-y-4" onSubmit={(e) => { 
                     e.preventDefault(); 
-                    const text = encodeURIComponent(`Hi Digiकर, I want to get my business online!\nBusiness Name: ${businessName}\nPhone: ${phoneNumber}`);
+                    const text = encodeURIComponent(`Hi Digikarlo, I want to get my business online!\nBusiness Name: ${businessName}\nPhone: ${phoneNumber}`);
                     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
                   }}>
                     <div>
@@ -700,7 +700,7 @@ export default function App() {
                   {/* Growth Image */}
                   <img 
                     src="https://t4.ftcdn.net/jpg/18/53/44/81/360_F_1853448143_MeWFwaTNC5dSxQVy6BQgl71atwrDYRIA.jpg" 
-                    alt="Digiकर Business Growth Success" 
+                    alt="Digikarlo Business Growth Success" 
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 z-0" 
                   />
                   
@@ -710,7 +710,7 @@ export default function App() {
                   {/* Info Box */}
                   <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-xl border border-white/10 p-5 rounded-2xl z-20 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group-hover:bg-black/80 transition-colors duration-500">
                     <p className="text-white font-bold text-lg tracking-tight" itemProp="founder">Ankush Kadam</p>
-                    <p className="text-blue-400 text-sm font-medium">Founder of Digiकर</p>
+                    <p className="text-blue-400 text-sm font-medium">Founder of Digikarlo</p>
                   </div>
                 </div>
                 {/* Decorative blob behind card */}
@@ -718,10 +718,10 @@ export default function App() {
               </motion.div>
               
               <div className="text-left">
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Our Mission at <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Digiकर</span></h2>
+                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Our Mission at <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Digikarlo</span></h2>
                 <div className="space-y-6 text-lg text-blue-50/70 leading-relaxed font-light">
                   <p>
-                    "We started Digiकर with a mission to help local businesses grow online without confusion."
+                    "We started Digikarlo with a mission to help local businesses grow online without confusion."
                   </p>
                   <p>
                     Many businesses struggle to get customers online — we solve that with simple, powerful digital solutions. From highly optimized websites to precise ad targeting, we take care of the tech so you can focus on running your business.
@@ -839,10 +839,10 @@ export default function App() {
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { name: "Rahul S.", biz: "Fitness Studio Owner", text: "Digiकर built my website and I started getting calls within a week! The WhatsApp integration is amazing." },
+                { name: "Rahul S.", biz: "Fitness Studio Owner", text: "Digikarlo built my website and I started getting calls within a week! The WhatsApp integration is amazing." },
                 { name: "Dr. Anjali M.", biz: "Dental Clinic", text: "Very professional service. They understood exactly what a clinic needs. Highly recommended for the price!" },
                 { name: "Amit P.", biz: "Real Estate Agent", text: "The customer generation form is working wonders. I get 3-4 solid property inquiries every week directly to my email." },
-                { name: "Sneha R.", biz: "Yoga Instructor", text: "Digiकर made the whole process so simple. I just sent my photos and they handled the rest. Beautiful website!" },
+                { name: "Sneha R.", biz: "Yoga Instructor", text: "Digikarlo made the whole process so simple. I just sent my photos and they handled the rest. Beautiful website!" },
                 { name: "Neha Gupta", biz: "Makeup Artist", text: "My portfolio looks stunning on mobile. Most of my brides find me through the new Google ranking. Thank you!" }
               ].slice(0, 3).map((testimonial, idx) => (
                 <div key={idx} className="bg-[#0a0a16] border border-blue-500/10 p-8 rounded-3xl flex flex-col hover:border-blue-500/30 transition-colors shadow-lg relative group">
@@ -992,7 +992,7 @@ export default function App() {
             <div className="md:col-span-2">
               <div className="flex items-center mb-6">
                 <span className="text-3xl font-extrabold tracking-normal bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
-                  Digiकर
+                  Digikarlo
                 </span>
               </div>
               <p className="text-blue-50/60 mb-6 font-light max-w-sm leading-relaxed">
@@ -1040,7 +1040,7 @@ export default function App() {
           
           <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-blue-50/40 text-xs font-light">
-              © {new Date().getFullYear()} Digiकर. All rights reserved.
+              © {new Date().getFullYear()} Digikarlo. All rights reserved.
             </p>
           </div>
         </div>
